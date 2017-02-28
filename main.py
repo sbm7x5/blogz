@@ -195,7 +195,7 @@ class SignupHandler(BlogHandler):
         if not email:
             return ""
 
-        EMAIL_RE = re.compile(r"^[\S]+@[\S]+.[\S]+$")
+        EMAIL_RE = re.compile(r"^[\S]+@[\S]+\.[\S]+$")
         if EMAIL_RE.match(email):
             return email
 
@@ -257,7 +257,7 @@ class SignupHandler(BlogHandler):
 
         if has_error:
             t = jinja_env.get_template("signup.html")
-            response = t.render(username=username, email=email, errors=errors)
+            response = t.render(username=username, email=submitted_email, errors=errors)
             self.response.out.write(response)
         else:
             self.redirect('/blog/newpost')
